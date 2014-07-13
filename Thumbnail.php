@@ -2,7 +2,7 @@
 
 class Model_Thumbnail
 {
-    public static function createThumbnail($filename, $toFilename, $toWidth = false, $toHeight = false, $cropToExactSize = false)
+    public static function createThumbnail($filename, $toFilename, $toWidth = false, $toHeight = false, $cropToExactSize = false, $quality = 100)
     {
         if (!$toWidth && !$toHeight) throw new Exception('You have to select either a width or height for your thumbnails');
 
@@ -54,7 +54,7 @@ class Model_Thumbnail
         } 
 
         imagecopyresized($newimg, $img, 0, 0, $x, $y, $toWidth, $toHeight, $width, $height);
-        imagejpeg($newimg, $toFilename);
+        imagejpeg($newimg, $toFilename, $quality);
     }
 }
 
